@@ -23,8 +23,7 @@ const server = http.createServer((req, res) => {
                     res.end(data);
                 }
             });
-        } 
-    } else if  (req.url === "/about") {
+        } else if  (req.url === "/about") {
         fs.readFile(path.join(__dirname, "about.html"), "utf-8", (err, data) => {
             if (err) {
                 //파일 불러올때 에러가 난 경우
@@ -37,20 +36,21 @@ const server = http.createServer((req, res) => {
                 res.end(data);
             }
             });
-    } else {
-        fs.readFile(path.join(__dirname, "contact.html"), "utf-8", (err, data) => {
-            if (err) {
-                //파일 불러올때 에러가 난 경우
-                res.statusCode = 500;
-                res.end("Error");
-            } else {
-                // 정상 동작 구문
-                res.statusCode = 200;
-                res.setHeader("Content-Type", "text/html");
-                res.end(data);
-            }
-        });
-    }
+        } else {
+            fs.readFile(path.join(__dirname, "contact.html"), "utf-8", (err, data) => {
+                if (err) {
+                    //파일 불러올때 에러가 난 경우
+                    res.statusCode = 500;
+                    res.end("Error");
+                } else {
+                    // 정상 동작 구문
+                    res.statusCode = 200;
+                    res.setHeader("Content-Type", "text/html");
+                    res.end(data);
+                }
+            });
+        }
+    } 
 
 });
  
